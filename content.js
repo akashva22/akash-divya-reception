@@ -50,6 +50,15 @@ window.CONTENT = {
   // Put the image next to index.html and write its file name, e.g. "couple.jpg". Leave "" for no photo.
   photo: "",
 
+  // ---- Pre-wedding photo slideshow (background) ----
+  // Just put your photos in the photos/ folder, named 1.jpg, 2.jpg, 3.jpg ... (numbers must be in order, no gaps).
+  // They are picked up automatically and start playing after the guest scrolls down.
+  // Optional: list exact file paths here instead, e.g. ["photos/a.jpg", "photos/b.jpg"]. Leave [] for automatic.
+  slideshow: [],
+  photosFolder: "photos/",
+  maxPhotos: 40,
+  slideInterval: 6,         // seconds each photo stays on screen
+
   // ---- Background music (plays once after the invitation is opened) ----
   // Leave file as "" to use the built-in soft melody.
   // To use your own song: put an .mp3 next to index.html and write its name, e.g. "my-song.mp3".
