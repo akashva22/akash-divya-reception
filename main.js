@@ -27,15 +27,19 @@ tick();setInterval(tick,1000);
 // ---- Background photo slideshow: begins only after the guest opens the invitation AND scrolls down ----
 // Photos are picked up automatically from the photos/ folder, named 1.jpg, 2.jpg, 3.jpg ... (jpg, jpeg, png or webp).
 // Or list exact paths in content.js (slideshow: [...]) to override.
+// When the slideshow plays, the text fades away slowly so the photos show clearly.
+// Scrolling or touching the screen brings the text back; it fades again after a short pause.
 (function(){var L=C.slideshow||[],box=document.getElementById('bgshow');if(!box)return;
-var imgs=[],cur=-1,want=false,shown=false,PF=C.photosFolder||'photos/',EX=['jpg','jpeg','png','webp'];
+var imgs=[],cur=-1,want=false,shown=false,dt=0,PF=C.photosFolder||'photos/',EX=['jpg','jpeg','png','webp'];
 function next(){var old=cur>=0?imgs[cur]:null;cur=(cur+1)%imgs.length;var im=imgs[cur];
-if(old){old.classList.remove('act');setTimeout(function(){old.classList.remove('kb')},2400)}
+if(old){old.classList.remove('act');setTimeout(function(){old.classList.remove('kb')},1800)}
 im.classList.remove('kb');void im.offsetWidth;im.classList.add('act','kb')}
-function show(){if(shown||!want||!imgs.length)return;shown=true;box.classList.add('on');next();setInterval(function(){if(imgs.length>1)next()},(C.slideInterval||6)*1000)}
+function show(){if(shown||!want||!imgs.length)return;shown=true;box.classList.add('on');next();setInterval(function(){if(imgs.length>1)next()},(C.slideInterval||3)*1000)}
+function wake(){document.body.classList.remove('dim');clearTimeout(dt);if(shown)dt=setTimeout(function(){document.body.classList.add('dim')},C.fadeDelay||2500)}
 function probe(n,e){if(n>(C.maxPhotos||40))return;var im=new Image();im.alt='';im.decoding='async';
 im.onload=function(){box.appendChild(im);imgs.push(im);show();probe(n+1,0)};
 im.onerror=function(){if(e+1<EX.length)probe(n,e+1)};im.src=PF+n+'.'+EX[e]}
 if(L.length){L.forEach(function(f){var im=new Image();im.alt='';im.src=f;box.appendChild(im);imgs.push(im)})}else probe(1,0);
-window.addEventListener('scroll',function(){if(window.opened&&window.scrollY>(C.slideshowStartScroll||80)){want=true;show()}},{passive:true});
+function act(){if(!window.opened)return;if(window.scrollY>(C.slideshowStartScroll||80)){want=true;show()}wake()}
+['scroll','touchstart','wheel','keydown'].forEach(function(ev){window.addEventListener(ev,act,{passive:true})});
 })();

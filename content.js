@@ -12,6 +12,8 @@ window.CONTENT = {
   initialA: "A",                       // monogram on the curtain
   initialB: "D",
   coupleLine: "Akash &amp; Divya",     // text on the curtain screen
+  coverKicker: "THE WEDDING RECEPTION OF",
+  coverDate: "07 &middot; DECEMBER &middot; 2026",
 
   // ---- Headings ----
   openButton: "OPEN INVITATION",
@@ -57,7 +59,8 @@ window.CONTENT = {
   slideshow: [],
   photosFolder: "photos/",
   maxPhotos: 40,
-  slideInterval: 6,         // seconds each photo stays on screen
+  slideInterval: 3,         // seconds each photo stays on screen
+  fadeDelay: 2500,          // milliseconds without scrolling before the text fades away to show the photos
 
   // ---- Background music (plays once after the invitation is opened) ----
   // Leave file as "" to use the built-in soft melody.

@@ -74,9 +74,39 @@ body{background:radial-gradient(ellipse at 50% 0,#3b0a13 0,#0e0407 42%,#060507 7
 main{background:none;z-index:2}
 #bgshow{position:fixed;inset:0;z-index:0;opacity:0;transition:opacity 2.2s;pointer-events:none;background:#060507}
 #bgshow.on{opacity:1}
-#bgshow img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);transition:opacity 2.2s ease}
+#bgshow img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);transition:opacity 1.6s ease}
 #bgshow img.act{opacity:1}
-#bgshow img.kb{animation:kb 14s ease-out forwards}
+#bgshow img.kb{animation:kb 10s ease-out forwards}
 @keyframes kb{to{transform:scale(1.17)}}
 /* darkness over the photos: raise the last number (0-1) for darker, lower for brighter */
 #bgshow:after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(6,3,5,.70),rgba(34,4,12,.58) 50%,rgba(6,3,5,.80))}
+
+/* text fades away while photos play (see main.js) */
+#bgshow:after{transition:opacity 4s ease}
+main{transition:opacity 1s ease}
+body.dim main{opacity:.18;transition-duration:4.5s}
+body.dim #bgshow:after{opacity:.3;transition-duration:4.5s}
+
+/* ---- Cover screen (modern) ---- */
+#open .c{background:repeating-linear-gradient(90deg,#2b040b 0,#5c0c19 16px,#8a1124 32px,#5c0c19 48px,#2b040b 64px);box-shadow:0 0 60px #000,inset 0 0 90px #000b}
+#open:before,#open:after{content:"";position:absolute;pointer-events:none;z-index:1;transition:opacity .4s}
+#open:before{inset:16px;border:1px solid #d9d9de66}
+#open:after{inset:23px;border:1px solid #ffffff1c}
+#open.go:before,#open.go:after{opacity:0}
+.cv{display:flex;flex-direction:column;align-items:center;gap:20px;padding:0 24px;text-align:center}
+.cv>*{opacity:0;animation:cvi 1.1s ease forwards}
+.cv>:nth-child(2){animation-delay:.2s}.cv>:nth-child(3){animation-delay:.7s}.cv>:nth-child(4){animation-delay:1s}.cv>:nth-child(5){animation-delay:1.3s}
+@keyframes cvi{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cvk{font:400 .68rem 'Cinzel',Georgia,serif;letter-spacing:.42em;color:#c9c9d0}
+.mg{width:156px;height:156px;filter:drop-shadow(0 0 16px #c4283f55)}
+.dr{stroke-dasharray:1;stroke-dashoffset:1;animation:dw 2.6s .3s ease forwards}
+@keyframes dw{to{stroke-dashoffset:0}}
+.rot{transform-box:fill-box;transform-origin:center;animation:rt 50s linear infinite}
+@keyframes rt{to{transform:rotate(360deg)}}
+#open h2{font:italic 500 2.7rem/1 'Cormorant Garamond',Georgia,serif;letter-spacing:.01em}
+.cvd{font:400 .72rem 'Cinzel',Georgia,serif;letter-spacing:.4em;color:#cfcfd6}
+.cvd:before,.cvd:after{content:"";display:inline-block;width:26px;height:1px;background:#d9d9de88;vertical-align:middle;margin:0 12px}
+#open button{position:relative;overflow:hidden;margin-top:10px;font:600 .76rem 'Cinzel',Georgia,serif;letter-spacing:.34em;padding:17px 34px 17px 40px;color:#fff;background:linear-gradient(135deg,#8a1124,#4a0a14);border:1px solid #d9d9de;outline:1px solid #d9d9de44;outline-offset:5px;box-shadow:0 10px 30px #0009;cursor:pointer;transition:all .4s;animation:none}
+#open button:before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffff55,transparent);transform:skewX(-20deg);animation:swp 3.6s infinite}
+@keyframes swp{0%,55%{left:-60%}100%{left:140%}}
+#open button:hover{letter-spacing:.4em;outline-offset:8px;box-shadow:0 12px 44px #c4283f77}
