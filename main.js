@@ -17,7 +17,7 @@ var bu=document.getElementById('bu');
 for(i=0;i<12;i++){e=document.createElement('b');var a=i/12*6.283,d=22+Math.random()*24;e.style.setProperty('--x',Math.cos(a)*d+'px');e.style.setProperty('--y',Math.sin(a)*d-6+'px');bu.appendChild(e)}
 function reveal(){var els=document.querySelectorAll('.rv');if(!window.IntersectionObserver){els.forEach(function(x){x.classList.add('in')});return}
 var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.15});els.forEach(function(x,j){x.style.transitionDelay=x.style.transitionDelay||(j<8?j*.18+'s':'0s');io.observe(x)})}
-document.getElementById('ob').onclick=function(){document.getElementById('open').className='go';window.scrollTo(0,0);window.opened=true;try{bgm()}catch(e){}setTimeout(reveal,500)};
+document.getElementById('open').onclick=function(){document.getElementById('open').className='go';window.scrollTo(0,0);window.opened=true;try{bgm()}catch(e){}setTimeout(reveal,500)};
 var T=new Date(C.eventStart).getTime(),E=new Date(C.eventEnd).getTime(),cd=document.getElementById('cd');
 function tick(){var n0=Date.now(),cl=document.getElementById('cl');if(n0>=T){cd.innerHTML='<p class="st">'+(n0<E?C.statusOngoing:C.statusEnded)+'</p>';cl.style.display='none';return}
 var s=Math.floor((T-n0)/1000),v=[Math.floor(s/86400),Math.floor(s%86400/3600),Math.floor(s%3600/60),s%60],nm=['DAYS','HRS','MIN','SEC'],h='';

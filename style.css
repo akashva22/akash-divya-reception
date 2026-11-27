@@ -110,3 +110,19 @@ body.dim #bgshow:after{opacity:.3;transition-duration:4.5s}
 #open button:before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffff55,transparent);transform:skewX(-20deg);animation:swp 3.6s infinite}
 @keyframes swp{0%,55%{left:-60%}100%{left:140%}}
 #open button:hover{letter-spacing:.4em;outline-offset:8px;box-shadow:0 12px 44px #c4283f77}
+
+/* ---- Tap anywhere to open ---- */
+#open{cursor:pointer}
+#open .tap{position:absolute;left:0;right:0;bottom:30px;text-align:center;font:400 .66rem 'Cinzel',Georgia,serif;letter-spacing:.38em;color:#cfcfd6aa;z-index:3;opacity:0;animation:tapi 1.2s 1.8s ease forwards,tapb 2.8s 3s ease-in-out infinite}
+@keyframes tapi{to{opacity:1}}
+@keyframes tapb{50%{opacity:.4}}
+#open.go .tap{opacity:0!important;transition:opacity .4s}
+
+/* ---- Tap hint sits below the frame ---- */
+#open:before{bottom:76px}
+#open:after{bottom:83px}
+#open .tap{bottom:30px}
+
+/* ---- Keep cover content clear of the bottom frame and tap hint ---- */
+#open .cv{padding-bottom:120px;max-height:100%;overflow:hidden}
+@media (max-height:700px){#open .mg{width:118px;height:118px}#open h2{font-size:2.2rem}#open .cv{gap:14px;padding-bottom:110px}}

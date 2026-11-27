@@ -16,7 +16,7 @@ window.CONTENT = {
   coverDate: "07 &middot; DECEMBER &middot; 2026",
 
   // ---- Headings ----
-  openButton: "OPEN INVITATION",
+  tapHint: "TAP TO OPEN INVITATION",
   intro: "TOGETHER WITH THEIR FAMILIES",
   inviteLine: "INVITE YOU TO THEIR",
   eventTitle: "WEDDING RECEPTION",
@@ -65,5 +65,5 @@ window.CONTENT = {
   // ---- Background music (plays once after the invitation is opened) ----
   // Leave file as "" to use the built-in soft melody.
   // To use your own song: put an .mp3 next to index.html and write its name, e.g. "my-song.mp3".
-  bgm: { file: "", volume: 0.7 }
+  bgm: { file: "our-song.mp3", volume: 0.7 }
 };
